@@ -1,4 +1,3 @@
-# node_build
+# node-build Chef Cookbook
 
-TODO: Enter the cookbook description here.
-
+Chef cookbook for node-build management.
