@@ -4,7 +4,6 @@ property :git_revision, String, default: 'master'
 property :user, String
 
 action :install do
-
   git_client 'default'
 
   Chef::Log.info ::File.dirname(new_resource.node_build_root)
@@ -21,6 +20,6 @@ action :install do
     user new_resource.user if new_resource.user
     group new_resource.user if new_resource.user
     action :checkout
-    not_if { ::File.exists?(::File.join(new_resource.node_build_root, 'bin', 'node-build')) }
+    not_if { ::File.exist?(::File.join(new_resource.node_build_root, 'bin', 'node-build')) }
   end
 end
