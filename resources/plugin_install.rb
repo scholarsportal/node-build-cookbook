@@ -6,7 +6,6 @@ property :user, String
 action :install do
   git_client 'default'
 
-  Chef::Log.info ::File.dirname(new_resource.node_build_root)
   directory ::File.dirname(new_resource.node_build_root) do
     owner new_resource.user if new_resource.user
     group new_resource.user if new_resource.user
