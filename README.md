@@ -7,7 +7,7 @@ Chef cookbook for node-build.
 ## Cookbook
 
 ```ruby
-cookbook 'node_build', '~> 0.1.0'
+cookbook 'node_build', '~> 1.0.0'
 ```
 
 ## Resource
