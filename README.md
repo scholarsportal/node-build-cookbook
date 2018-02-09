@@ -1,3 +1,5 @@
+[![Chef cookbook](https://img.shields.io/cookbook/v/node_build.svg)]()
+[![Travis](https://img.shields.io/travis/afaundez/node-build-cookbook.svg)]()
 # node-build Chef Cookbook
 
 Chef cookbook for node-build.
