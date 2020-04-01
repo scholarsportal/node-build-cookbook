@@ -30,7 +30,7 @@ env:
     - INSTANCE=default-fedora-30
     - INSTANCE=default-fedora-31
     - INSTANCE=default-fedora-latest
-    - INSTANCE=default-opensuse-leap-15
+    # - INSTANCE=default-opensuse-leap-15
     - INSTANCE=default-oraclelinux-6
     - INSTANCE=default-oraclelinux-7
     - INSTANCE=default-oraclelinux-8
