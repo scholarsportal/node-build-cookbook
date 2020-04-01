@@ -44,3 +44,10 @@ node_build_plugin_install '/path/to/install/node-build'
 | git_revision    | String  | master                                    | You can choose a branch, tag, or commit to be synchronized with git  |
 
 `node_build_root` is the name property.
+
+## Testing
+
+Check [Test Kitchen](https://kitchen.ci/docs/getting-started/running-test).
+
+- dokken: `KITCHEN_LOCAL_YAML=kitchen.dokken.yml kitchen test`
+- vagrant/virtualbox: `kitchen test`

@@ -4,6 +4,10 @@ property :git_revision, String, default: 'master'
 property :user, String
 
 action :install do
+  node_build_dependencies.each do |dependency|
+    package dependency
+  end
+
   git_client 'default'
 
   directory ::File.dirname(new_resource.node_build_root) do
@@ -21,4 +25,8 @@ action :install do
     action :checkout
     not_if { ::File.exist?(::File.join(new_resource.node_build_root, 'bin', 'node-build')) }
   end
+end
+
+action_class do
+  include Chef::NodeBuild
 end
