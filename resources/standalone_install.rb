@@ -1,7 +1,7 @@
 property :prefix, String, default: '/usr/local'
 
 action :install do
-  node_build_dependencies_for(node['platform']).each do |depedency|
+  node_build_dependencies.each do |depedency|
     package depedency
   end
 

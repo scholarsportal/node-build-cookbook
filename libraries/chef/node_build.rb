@@ -1,17 +1,31 @@
 class Chef
   module NodeBuild
-    def node_build_dependencies_for(platform)
-      case platform
-      when 'amazon', 'rhel', 'fedora', 'centos', 'opensuseleap'
-        %w(python gcc-c++ make)
-      when 'ubuntu', 'debian'
-        if platform?('ubuntu') && node['platform_version'].to_i >= 20
-          %w(python3 g++ make)
-        else
-          %w(python g++ make)
-        end
-      else []
+    def node_build_dependencies
+      [python, gcc, make].compact
+    end
+
+    def python
+      version = node['platform_version'].to_i
+      case
+      when platform?('centos') && version >= 8 then 'python3'
+      when platform?('ubuntu') && version >= 20 then 'python3'
+      when platform?(*supported_plaftorms) then 'python'
       end
+    end
+
+    def gcc
+      case node['platform_family']
+      when 'amazon', 'fedora', 'rhel' then 'gcc-c++'
+      when 'debian' then 'g++'
+      end
+    end
+
+    def make
+      'make' if platform?(*supported_plaftorms)
+    end
+
+    def supported_plaftorms
+      %w(amazon centos debian fedora oracle ubuntu)
     end
   end
 end

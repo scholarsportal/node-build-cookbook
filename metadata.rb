@@ -12,7 +12,6 @@ supports 'amazon'
 supports 'centos'
 supports 'debian'
 supports 'fedora'
-supports 'opensuseleap'
 supports 'oracle'
 supports 'ubuntu'
 

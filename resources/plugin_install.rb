@@ -4,7 +4,7 @@ property :git_revision, String, default: 'master'
 property :user, String
 
 action :install do
-  node_build_dependencies_for(node['platform']).each do |dependency|
+  node_build_dependencies.each do |dependency|
     package dependency
   end
 

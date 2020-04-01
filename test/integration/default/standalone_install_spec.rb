@@ -13,7 +13,7 @@ end
 
 standalone_node_version = '12.16.1'
 standalone_node_path = "/tmp/standalone/node-#{standalone_node_version}"
-describe bash("#{standalone_node_build_bin} #{standalone_node_version} #{standalone_node_path}") do
+describe command("#{standalone_node_build_bin} #{standalone_node_version} #{standalone_node_path}") do
   its('exit_status') { should eq 0 }
 end
 

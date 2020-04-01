@@ -26,7 +26,7 @@ platforms:
   - name: fedora-latest
   # - name: freebsd-11
   # - name: freebsd-12
-  - name: opensuse-leap-15
+  # - name: opensuse-leap-15
   - name: oraclelinux-6
     driver_config:
       box: bento/oracle-6
@@ -40,6 +40,8 @@ platforms:
   - name: ubuntu-18.04
   - name: ubuntu-19.10
   - name: ubuntu-20.04
+    driver_config:
+      box: ubuntu/xenial64
 
 suites:
   - name: default

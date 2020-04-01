@@ -13,7 +13,7 @@ end
 
 plugin_node_version = '13.12.0'
 plugin_node_path = "/tmp/plugin/node-#{plugin_node_version}"
-describe bash("#{plugin_node_build_bin} #{plugin_node_version} #{plugin_node_path}") do
+describe command("#{plugin_node_build_bin} #{plugin_node_version} #{plugin_node_path}") do
   its('exit_status') { should eq 0 }
 end
 
