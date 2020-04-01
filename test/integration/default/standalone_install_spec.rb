@@ -17,6 +17,6 @@ describe bash("#{standalone_node_build_bin} #{standalone_node_version} #{standal
   its('exit_status') { should eq 0 }
 end
 
-describe file(::File.join standalone_node_path, 'bin', 'node') do
+describe file(::File.join(standalone_node_path, 'bin', 'node')) do
   it { should exist }
 end
