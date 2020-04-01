@@ -7,6 +7,7 @@ class Chef
     def python
       version = node['platform_version'].to_i
       if platform?('centos') && version >= 8 then 'python3'
+      elsif platform?('oracle') && version >= 8 then 'python36'
       elsif platform?('ubuntu') && version >= 20 then 'python3'
       elsif platform?(*supported_plaftorms) then 'python'
       end
