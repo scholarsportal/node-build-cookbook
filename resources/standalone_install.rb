@@ -1,6 +1,10 @@
 property :prefix, String, default: '/usr/local'
 
 action :install do
+  node_build_dependencies_for(node['platform']).each do |depedency|
+    package depedency
+  end
+
   node_build_plugin_install node_build_cache do
     user 'root'
   end
@@ -14,6 +18,8 @@ action :install do
 end
 
 action_class do
+  include Chef::NodeBuild
+
   def node_build_cache
     ::File.join(Chef::Config[:file_cache_path], 'node-build')
   end
