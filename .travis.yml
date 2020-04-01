@@ -1,11 +1,13 @@
 os: linux
 dist: bionic
+language: ruby
 services: docker
 
 addons:
   apt:
     sources:
-      - chef-current-bionic
+      - sourceline: 'deb https://packages.chef.io/repos/apt/stable bionic main'
+        key_url: 'https://packages.chef.io/chef.asc'
     packages:
       - chef-workstation
 
@@ -16,26 +18,26 @@ env:
   global:
     - KITCHEN_LOCAL_YAML=kitchen.dokken.yml
     - CHEF_LICENSE=accept
-  matrix:
-    - INSTANCE=default-amazonlinux-1
-    - INSTANCE=default-amazonlinux-2
-    - INSTANCE=default-centos-6
-    - INSTANCE=default-centos-7
-    - INSTANCE=default-centos-8
-    - INSTANCE=default-debian-8
-    - INSTANCE=default-debian-9
-    - INSTANCE=default-debian-10
-    - INSTANCE=default-fedora-30
-    - INSTANCE=default-fedora-31
-    - INSTANCE=default-fedora-latest
-    - INSTANCE=default-opensuse-leap-15
-    - INSTANCE=default-oraclelinux-6
-    - INSTANCE=default-oraclelinux-7
-    - INSTANCE=default-oraclelinux-8
-    - INSTANCE=default-ubuntu-1604
-    - INSTANCE=default-ubuntu-1804
-    - INSTANCE=default-ubuntu-1910
-    - INSTANCE=default-ubuntu-2004
+  jobs: INSTANCE=default-amazonlinux-1
+    # - INSTANCE=default-amazonlinux-1
+    # - INSTANCE=default-amazonlinux-2
+    # - INSTANCE=default-centos-6
+    # - INSTANCE=default-centos-7
+    # - INSTANCE=default-centos-8
+    # - INSTANCE=default-debian-8
+    # - INSTANCE=default-debian-9
+    # - INSTANCE=default-debian-10
+    # - INSTANCE=default-fedora-30
+    # - INSTANCE=default-fedora-31
+    # - INSTANCE=default-fedora-latest
+    # - INSTANCE=default-opensuse-leap-15
+    # - INSTANCE=default-oraclelinux-6
+    # - INSTANCE=default-oraclelinux-7
+    # - INSTANCE=default-oraclelinux-8
+    # - INSTANCE=default-ubuntu-1604
+    # - INSTANCE=default-ubuntu-1804
+    # - INSTANCE=default-ubuntu-1910
+    # - INSTANCE=default-ubuntu-2004
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
@@ -46,7 +48,7 @@ before_script:
 
 script: kitchen verify ${INSTANCE}
 
-matrix:
+jobs:
   include:
     - script:
       - chef exec delivery local all
