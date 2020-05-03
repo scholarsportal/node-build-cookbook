@@ -24,7 +24,7 @@ control 'standalone install' do
   end
 
   describe command("#{node_build_bin} --version") do
-    its('stdout') { should match (/^node-build/) }
+    its('stdout') { should match /^node-build/ }
     its('exit_status') { should eq 0 }
   end
 end

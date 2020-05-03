@@ -16,7 +16,7 @@ node_build_plugin_install node_build_home do
 end
 
 node_build_home = ::File.join plugins_home, 'node-build-with-user'
-node_build_plugin_install  node_build_home do
+node_build_plugin_install node_build_home do
   user username
   group username
 end
