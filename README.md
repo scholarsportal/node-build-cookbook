@@ -9,7 +9,7 @@ Chef cookbook for node-build.
 ## Cookbook
 
 ```ruby
-cookbook 'node_build', '~> 1.0.1'
+cookbook 'node_build', '~> 1.0.2'
 ```
 
 ## Resource
@@ -43,7 +43,7 @@ node_build_plugin_install '/path/to/install/node-build'
 | group           | String  |                                           | Group responsible of `node_build_path`.  |
 | git_url         | String  | https://github.com/nodenv/node-build.git  | You can give an alternative git URL  |
 | git_revision    | String  | master                                    | You can choose a branch, tag, or commit to be synchronized with git  |
-| user            | String  |                                           | Deprecated. Use owner instead  |
+| user            | String  |                                           | Deprecated. Use `owner` instead  |
 
 `node_build_root` is the name property.
 
@@ -51,5 +51,5 @@ node_build_plugin_install '/path/to/install/node-build'
 
 Check [Test Kitchen](https://kitchen.ci/docs/getting-started/running-test).
 
-- dokken: `KITCHEN_LOCAL_YAML=kitchen.dokken.yml kitchen test`
+- dokken/docker: `KITCHEN_LOCAL_YAML=kitchen.dokken.yml kitchen test`
 - vagrant/virtualbox: `kitchen test`
