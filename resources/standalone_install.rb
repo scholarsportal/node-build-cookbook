@@ -5,9 +5,7 @@ action :install do
     package dependency
   end
 
-  node_build_plugin_install node_build_cache do
-    user 'root'
-  end
+  node_build_plugin_install node_build_source
 
   execute "node-build standalone install #{new_resource.prefix}" do
     cwd node_build_cache
