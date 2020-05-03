@@ -19,7 +19,6 @@ action :install do
 
   git new_resource.node_build_root do
     repository new_resource.git_url
-    reference new_resource.git_revision
     user new_resource.user if new_resource.user
     group new_resource.user if new_resource.user
     action :checkout
