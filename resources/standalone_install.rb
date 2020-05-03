@@ -11,6 +11,7 @@ action :install do
     cwd node_build_source
     command 'sh install.sh'
     environment('PREFIX' => new_resource.prefix)
+    group 'staff' if platform_family? 'debian'
     creates node_build_bin
   end
 end

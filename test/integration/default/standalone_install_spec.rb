@@ -6,19 +6,21 @@
 # found at http://inspec.io/docs/reference/resources/
 
 node_build_bin = '/usr/local/bin/node-build'
+expected_owner = 'root'
+expected_group = os.debian? ? 'staff' : expected_owner
 
 control 'standalone install' do
   node_build_home = ::File.join '/usr/local/share/node-build'
   describe directory(node_build_home) do
     it { should exist }
-    its('owner') { should eq 'root' }
-    its('group') { should eq 'root' }
+    its('owner') { should eq expected_owner }
+    its('group') { should eq expected_group }
   end
 
   describe file(node_build_bin) do
     it { should exist }
-    its('owner') { should eq 'root' }
-    its('group') { should eq 'root' }
+    its('owner') { should eq expected_owner }
+    its('group') { should eq expected_group }
   end
 
   describe command("#{node_build_bin} --version") do
