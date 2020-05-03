@@ -1,8 +1,8 @@
 property :prefix, String, default: '/usr/local'
 
 action :install do
-  node_build_dependencies.each do |depedency|
-    package depedency
+  node_build_dependencies.each do |dependency|
+    package dependency
   end
 
   node_build_plugin_install node_build_cache do
@@ -20,11 +20,11 @@ end
 action_class do
   include Chef::NodeBuild
 
-  def node_build_cache
+  def node_build_source
     ::File.join(Chef::Config[:file_cache_path], 'node-build')
   end
 
-  def node_build_binary
+  def node_build_bin
     ::File.join(new_resource.prefix, 'share', 'node-build', 'bin', 'node-build')
   end
 end
