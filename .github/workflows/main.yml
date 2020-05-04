@@ -12,5 +12,5 @@ jobs:
         uses: actions/checkout@master
       - name: Run Chef Supermarket Share
         uses: afaundez/chef-supermarket-action@master
-        with:
-          key: ${{ secrets.supermarketKey }}
+        secrets:
+          - SUPERMARKET_API_KEY
