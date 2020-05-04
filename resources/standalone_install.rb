@@ -1,30 +1,29 @@
 property :prefix, String, default: '/usr/local'
 
 action :install do
-  node_build_dependencies.each do |depedency|
-    package depedency
+  node_build_dependencies.each do |dependency|
+    package dependency
   end
 
-  node_build_plugin_install node_build_cache do
-    user 'root'
-  end
+  node_build_plugin_install node_build_source
 
   execute "node-build standalone install #{new_resource.prefix}" do
-    cwd node_build_cache
+    cwd node_build_source
     command 'sh install.sh'
     environment('PREFIX' => new_resource.prefix)
-    creates node_build_binary
+    group 'staff' if platform_family? 'debian'
+    creates node_build_bin
   end
 end
 
 action_class do
   include Chef::NodeBuild
 
-  def node_build_cache
+  def node_build_source
     ::File.join(Chef::Config[:file_cache_path], 'node-build')
   end
 
-  def node_build_binary
+  def node_build_bin
     ::File.join(new_resource.prefix, 'share', 'node-build', 'bin', 'node-build')
   end
 end
