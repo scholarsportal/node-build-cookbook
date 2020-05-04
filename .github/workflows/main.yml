@@ -1,10 +1,10 @@
-name: delivery
+name: chef supermarket
 on:
   release:
     types: [published]
 
 jobs:
-  delivery:
+  share:
     runs-on: ubuntu-latest
 
     steps:
