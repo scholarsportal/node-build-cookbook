@@ -1,3 +1,4 @@
+unified_mode true
 property :node_build_root, String, name_property: true
 property :git_url, String, default: 'https://github.com/nodenv/node-build.git'
 property :git_revision, String, default: 'master'
@@ -22,6 +23,7 @@ action :install do
 
   git new_resource.node_build_root do
     repository new_resource.git_url
+    revision new_resource.git_revision
     user new_resource.owner if new_resource.property_is_set?(:owner)
     group new_resource.group if new_resource.property_is_set?(:group)
     action :checkout
