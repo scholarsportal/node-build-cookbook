@@ -1,3 +1,4 @@
+unified_mode true
 property :prefix, String, default: '/usr/local'
 
 action :install do
