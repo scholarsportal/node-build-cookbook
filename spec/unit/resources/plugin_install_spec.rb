@@ -26,6 +26,36 @@ describe 'plugin install' do
 
     it { is_expected.to install_node_build_plugin_install('/tmp/plugins/custom-attributes') }
     it { is_expected.to create_directory(::File.dirname('/tmp/plugins/custom-attributes')).with(user: 'user', group: 'group') }
-    it { is_expected.to checkout_git('/tmp/plugins/custom-attributes').with(repository: 'https://url.git'), revision: 'revision' }
+    it { is_expected.to checkout_git('/tmp/plugins/custom-attributes').with(repository: 'https://url.git', revision: 'revision') }
+  end
+
+  context 'with deprecated attributes' do
+    let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }
+
+    before do
+      RSpec.configure do |config|
+        config.log_level = :warn
+      end
+    end
+
+    after do
+      RSpec.configure do |config|
+        config.log_level = :fatal
+      end
+    end
+
+    recipe do
+      node_build_plugin_install '/tmp/plugins/deprecated-attributes' do
+        user 'user'
+      end
+    end
+
+    it do
+      expect { chef_run }
+        .to not_raise_error
+        .and output(/User property is deprecated/).to_stdout_from_any_process
+    end
+
+    it { is_expected.to checkout_git('/tmp/plugins/deprecated-attributes').with(user: 'user', group: nil) }
   end
 end
