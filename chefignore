@@ -105,3 +105,9 @@ Strainerfile
 ###########
 .vagrant
 Vagrantfile
+
+# Custom #
+##########
+.delivery/*
+.github/*
+CODE_OF_CONDUCT*
