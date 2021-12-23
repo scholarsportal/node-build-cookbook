@@ -26,8 +26,8 @@ action :install do
     revision new_resource.git_revision
     user new_resource.owner if new_resource.property_is_set?(:owner)
     group new_resource.group if new_resource.property_is_set?(:group)
-    action :checkout
-    not_if { ::File.exist?(::File.join(new_resource.node_build_root, 'bin', 'node-build')) }
+    enable_checkout false
+    action :sync
   end
 end
 

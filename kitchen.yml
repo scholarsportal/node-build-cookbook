@@ -40,4 +40,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[test::default]
+      - recipe[test::plugin_install]
+      - recipe[test::standalone_install]

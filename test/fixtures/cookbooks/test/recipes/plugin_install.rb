@@ -20,3 +20,17 @@ node_build_plugin_install node_build_home do
   user username
   group username
 end
+
+node_build_home = ::File.join plugins_home, 'node-build-upgraded'
+
+node_build_plugin_install node_build_home do
+  owner username
+  group username
+  git_revision 'v4.9.49'
+end
+
+node_build_plugin_install node_build_home do
+  owner username
+  group username
+  git_revision 'v4.9.59'
+end

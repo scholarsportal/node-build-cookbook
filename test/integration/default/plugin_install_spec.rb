@@ -87,3 +87,16 @@ control 'build a node version with a node-build binary' do
     it { should exist }
   end
 end
+
+control 'upgrade node-build using git revision tag' do
+  node_build_home = File.join plugins_home, 'node-build-upgraded'
+
+  describe directory(node_build_home) do
+    it { should exist }
+  end
+
+  describe command("bash -c \"cd #{node_build_home} && git rev-parse HEAD\"") do
+    its(:stderr) { should eq '' }
+    its(:stdout) { should eq "d6a05a7d598dc2ef2f0e5fbccac5123f12eed61e\n" }
+  end
+end

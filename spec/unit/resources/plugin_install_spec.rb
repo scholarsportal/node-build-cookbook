@@ -11,7 +11,7 @@ describe 'plugin install' do
 
     it { is_expected.to install_node_build_plugin_install('/tmp/plugins/default-attributes') }
     it { is_expected.to create_directory(::File.dirname('/tmp/plugins/default-attributes')).with(user: nil, group: nil) }
-    it { is_expected.to checkout_git('/tmp/plugins/default-attributes').with(repository: 'https://github.com/nodenv/node-build.git', revision: 'master') }
+    it { is_expected.to sync_git('/tmp/plugins/default-attributes').with(repository: 'https://github.com/nodenv/node-build.git', revision: 'master') }
   end
 
   context 'with custom attributes' do
@@ -26,7 +26,7 @@ describe 'plugin install' do
 
     it { is_expected.to install_node_build_plugin_install('/tmp/plugins/custom-attributes') }
     it { is_expected.to create_directory(::File.dirname('/tmp/plugins/custom-attributes')).with(user: 'user', group: 'group') }
-    it { is_expected.to checkout_git('/tmp/plugins/custom-attributes').with(repository: 'https://url.git', revision: 'revision') }
+    it { is_expected.to sync_git('/tmp/plugins/custom-attributes').with(repository: 'https://url.git', revision: 'revision') }
   end
 
   context 'with deprecated attributes' do
@@ -46,6 +46,6 @@ describe 'plugin install' do
       RSpec.configure { |config| config.log_level = :fatal }
     end
 
-    it { is_expected.to checkout_git('/tmp/plugins/deprecated-attributes').with(user: 'user', group: nil) }
+    it { is_expected.to sync_git('/tmp/plugins/deprecated-attributes').with(user: 'user', group: nil) }
   end
 end
