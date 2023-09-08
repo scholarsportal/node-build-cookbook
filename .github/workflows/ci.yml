@@ -20,6 +20,7 @@ jobs:
           - fedora-34
           - oraclelinux-8
           - ubuntu-2004
+          - ubuntu-2204
         workstation_version:
           - '21.3.346'
           - '21.11.679'
@@ -43,4 +44,4 @@ jobs:
         os: ${{ matrix.os }}
       env:
         KITCHEN_LOCAL_YAML: kitchen.dokken.yml
-  
+
