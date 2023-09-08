@@ -9,28 +9,8 @@ on:
 env:
   CHEF_LICENSE: accept-no-persist
 jobs:
-  install_chef:
-    runs-on: self-hosted
-    strategy:
-      matrix:
-        workstation_version:
-          - '21.3.346'
-          - '21.11.679'
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Install Chef
-      run: |
-        for version in ${{ matrix.workstation_version }}; do
-          echo "Installing Chef version: $version"
-          # Use the $version variable to install Chef here
-          # For example: Install Chef using actionshub/chef-install
-          # Example: actionshub/chef-install@main with version: $version
-        done
-
   integration:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         os:
@@ -49,6 +29,10 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v2
+    - name: Install Chef
+      uses: actionshub/chef-install@main
+      with:
+        version: ${{ matrix.workstation_version }}
     - name: Cookstyle
       run: cookstyle --display-cop-names --extra-details
     - name: Rspec
