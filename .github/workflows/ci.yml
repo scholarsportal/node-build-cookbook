@@ -9,6 +9,19 @@ on:
 env:
   CHEF_LICENSE: accept-no-persist
 jobs:
+  install_chef:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        workstation_version:
+          - '21.3.346'
+          - '21.11.679'
+    steps:
+    - name: Install Chef
+      uses: actionshub/chef-install@main
+      with:
+        version: ${{ matrix.workstation_version }}
+
   integration:
     runs-on: self-hosted
     strategy:
@@ -21,18 +34,11 @@ jobs:
           - oraclelinux-8
           - ubuntu-2004
           - ubuntu-2204
-        workstation_version:
-          - '21.3.346'
-          - '21.11.679'
         suite: [default]
       fail-fast: false
     steps:
     - name: Check out code
       uses: actions/checkout@v2
-    - name: Install Chef
-      uses: actionshub/chef-install@main
-      with:
-        version: ${{ matrix.workstation_version }}
     - name: Cookstyle
       run: cookstyle --display-cop-names --extra-details
     - name: Rspec
